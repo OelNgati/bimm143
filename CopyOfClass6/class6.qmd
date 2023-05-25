@@ -1,0 +1,170 @@
+---
+title: "Class 6"
+author: "Jonathan Cifuentes"
+format: html
+---
+**Function in R**
+INTRO
+```{r}
+student1 <- c(100, 100, 100, 100, 100, 100, 100, 90)
+student2 <- c(100, NA, 90, 90, 90, 90, 97, 80)
+student3 <- c(90, NA, NA, NA, NA, NA, NA, NA)
+student_vector <- c(student1, student2, student3)
+```
+
+```{r}
+#Mean
+mean(student1)
+```
+```{r}
+# Which element of this vector is the lowest?
+which.min(student1)
+```
+What i want is to exclude the lowest value from the mean the vector?
+```{r}
+# This removes the lowest score from that vector
+student1[-8]
+```
+Now we can use the answer from which.min() to return all other elements of the vector
+```{r}
+# this is the first working snippet
+mean(student1[-which.min(student1)])
+```
+Does this work for other snippets?
+One approach is na.rm but this is pants (LOL) because it favors the last student for only taking one exam
+```{r}
+student2
+mean(student2, na.rm=TRUE)
+student3
+mean(student3, na.rm=TRUE)
+```
+Another approach is to replace the NA's with a 0
+```{r}
+b <- student2
+c <- student3
+is.na(b)
+#identify which element is na
+which(is.na(b))
+```
+Now that we've identified these NA values, how do we exclude them?
+```{r}
+#this is not quite right because it assumes na is true
+mean(b[-which(is.na(b))])
+#lets instead make it 0
+b[(is.na(b))] <- 0
+b
+```
+```{r}
+b[(is.na(b))] <- 0
+mean(b[-which.min(b)])
+```
+```{r}
+#student 3
+c[is.na(c)] <- 0
+mean(c[-which.min(c)])
+```
+Take the snippet and turn it into a function. Ever function has three working parts
+-a name in our case `grade()`
+-input arguments, a vector of student scores
+-the body in other words our working snippet of code
+
+In Rstudio i will select `Code > Extract function`
+```{r}
+grade <- function(b) {
+  b[(is.na(b))] <- 0
+  mean(b[-which.min(b)])
+}
+```
+
+```{r}
+grade(student1)
+grade(student2)
+grade(student3)
+```
+Now we need to add comments to explain how we did this
+```{r}
+#' Calculate the average score of a students score vector, while treating missing scores as 0's
+#'
+#' @param x numeric vector of student scores
+#'
+#' @return average score
+#' @export
+#'
+#' @examples
+student <- c(100, NA, 90, 97)
+  grade(student)
+grade <- function(b) {
+  #mask NA scores as 0
+  b[(is.na(b))] <- 0
+  #exclude lowest score from the vector
+  mean(b[-which.min(b)])
+}
+```
+
+Now we can begin the **LAB**
+
+> Q1. Write a function grade() to determine an overall grade from a vector of student homework
+assignment scores dropping the lowest single score. If a student misses a homework (i.e. has an
+NA value) this can be used as a score to be potentially dropped. Your final function should be
+adquately explained with code comments and be able to work on an example class gradebook
+such as this one in CSV format: “https://tinyurl.com/gradeinput” [3pts]
+
+```{r}
+url <- "https://tinyurl.com/gradeinput"
+gradebook <- read.csv(url, row.names = 1)
+```
+
+```{r}
+#apply(data set, margin 1 means row while 2 means column (determines how the code will be read), and function)
+apply(gradebook, 1, grade)
+```
+
+>Q2. Using your grade() function and the supplied gradebook, Who is the top scoring student
+overall in the gradebook? [3pts]
+
+To answer this we can use the apply() function and save the results
+```{r}
+results <- apply(gradebook, 1, grade)
+sort(results)
+#or
+which.max(results)
+#student 18 had the highest results
+```
+
+>Q3. From your analysis of the gradebook, which homework was toughest on students (i.e. obtained
+the lowest scores overall? [2pts]
+
+```{r}
+ave.scores <- apply(gradebook, 2, mean, na.rm=TRUE)
+ave.scores
+which.min(ave.scores)
+```
+```{r}
+med.scores <- apply(gradebook, 2, median, na.rm=TRUE)
+med.scores
+which.min(med.scores)
+boxplot(gradebook)
+```
+HW 2 is probably being taught in an inefficient way
+
+>Q4. Optional Extension: From your analysis of the gradebook, which homework was most
+predictive of overall score (i.e. highest correlation with average grade score)? [1pt]
+
+Are the final results (avg score) correlated with the results for individual hws?
+```{r}
+masked.gradebook <- gradebook
+masked.gradebook[is.na(masked.gradebook)] <- 0
+masked.gradebook
+```
+What about the correlation?
+```{r}
+cor(results, masked.gradebook)
+```
+```{r}
+apply(masked.gradebook, 2, cor, x=results)
+```
+Highly correlated for hw 5.
+>Q5. Make sure you save your Quarto document and can click the “Render” (or Rmarkdown”
+Knit”) button to generate a PDF foramt report without errors. Finally, submit your PDF
+to gradescope. [1pt]
+
