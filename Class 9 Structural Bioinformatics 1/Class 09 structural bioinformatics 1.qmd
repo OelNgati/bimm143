@@ -1,0 +1,93 @@
+---
+title: "Class 09 Structural Bioinformatics 1"
+format: html
+---
+
+#Comparatove analysis of ADK
+ADK (Adenelate Kinase) is a n important drug target and we would love to know how it works - ie molecular mechanism.]
+
+There has been lots of work done on this protein due to it's importance including lots of crystal structure.
+
+```{r}
+library(bio3d)
+```
+
+```{r}
+aa <- get.seq("1ake_A")
+aa
+```
+
+We will begin by 
+
+We can now run BLAST with this sequence
+```{r}
+b <- blast.pdb(aa)
+```
+
+```{r}
+hits <- plot(b)
+```
+
+Let's see whats it our 'hits'
+```{r}
+hits$pdb.id
+```
+Now we can download all these PDB structure files:
+```{r}
+files <- get.pdb(hits$pdb.id, path="pdbs", split=TRUE, gzip=TRUE)
+```
+Now i want to align and superimpose these structures which are all over the place.
+```{r}
+# Align releated PDBs
+pdbs <- pdbaln(files, fit = TRUE, exefile="msa")
+```
+
+```{r}
+# Vector containing PDB codes for figure axis
+ids <- basename.pdb(pdbs$id)
+
+# Draw schematic alignment
+plot(pdbs, labels=ids)
+```
+
+```{r}
+#annotate
+anno <- pdb.annotate(ids)
+unique(anno$source)
+```
+```{r}
+anno
+```
+
+```{r}
+# Perform PCA
+pc.xray <- pca(pdbs)
+plot(pc.xray)
+```
+
+```{r}
+# Calculate RMSD
+rd <- rmsd(pdbs)
+
+# Structure-based clustering
+hc.rd <- hclust(dist(rd))
+grps.rd <- cutree(hc.rd, k=3)
+
+plot(pc.xray, 1:2, col="grey50", bg=grps.rd, pch=21, cex=1)
+```
+
+We can make a wee movie - also called a trajectory of the major differences (ie structural displacements) of ADK.
+```{r}
+#Visualize first principal component makes a file of the protein in mol view
+pc1 <- mktrj(pc.xray, pc=1, file="pc_1.pdb")
+```
+
+> Q10. Which of the packages above is found only on BioConductor and not CRAN? 
+
+MSA
+> Q11. Which of the above packages is not found on BioConductor or CRAN?: 
+
+Bio3D-view
+> Q12. True or False? Functions from the devtools package can be used to install packages from GitHub and BitBucket? 
+
+true

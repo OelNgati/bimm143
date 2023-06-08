@@ -1,0 +1,28 @@
+---
+title: "Last section of gene project"
+author: "Jonathan Cifuentes"
+format: html
+---
+Load
+```{r}
+library(bio3d)
+```
+
+```{r}
+muscle<- read.fasta("muscle-E20230529-220140-0852-25318055-p2m.clw.fst")
+```
+
+```{r}
+
+identity <- seqidentity(muscle)
+heatmap(identity, scale = "none")
+```
+
+```{r}
+blast.pdb()
+```
+
+```{r}
+blast.pdb("sus_alignment", database = "pdb", time.out = NULL, chain.single=TRUE)
+```
+

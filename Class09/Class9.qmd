@@ -1,0 +1,89 @@
+---
+name: Jonathan Cifuentes A17238145
+title: "Class09"
+format: html
+---
+
+> Q1: What percentage of structures in the PDB are solved by X-Ray and Electron Microscopy.
+
+```{r}
+pdb<- read.csv("Data Export Summary.csv", row.names=1)
+
+
+```
+
+let's create a function
+
+```{r}
+comma_sum <- function(x) {
+  sum(as.numeric(gsub(",","", x)))
+}
+
+comma_sum(pdb$X.ray)
+comma_sum(pdb$EM)
+comma_sum(pdb$Total)
+```
+
+```{r}
+#for xray
+comma_sum(pdb$X.ray)/comma_sum(pdb$Total)
+```
+
+```{r}
+#for em
+comma_sum(pdb$EM)/comma_sum(pdb$Total)
+```
+
+> Q2: What proportion of structures in the PDB are protein?
+
+```{r}
+round(comma_sum(pdb$Total[1])/comma_sum(pdb$Total), 2)
+```
+
+> Q3: Type HIV in the PDB website search box on the home page and determine how many HIV-1 protease structures are in the current PDB?
+
+![HIV-PR structure from MERK a bound drug](1HSG.png)
+
+skipped #Visualizing the HIV-1 protease
+
+> Q4 Water molecules normally have 3 atoms. Why do we see just one atom per water molecule in this structure?
+
+The resolution isnt strong enough to detect the minsulce hydrogen molecules that are attached to the big oxygen molecules. \>Q5: There is a critical "conserved" water molecule in the binding site. Can you identify this water molecule? What residue number does this water molecule have
+
+Water molecules bind to ASP25 on each chain \# working with structures in R
+
+```{r}
+library(bio3d)
+hiv <- read.pdb("1hsg")
+hiv
+```
+
+```{r}
+attributes(pdb)
+head(pdb$atom)
+```
+
+Perform a prediction of flexibility with a technique called NMA (normal mode analysis)
+
+```{r}
+adk <- read.pdb("6s36")
+adk
+```
+> Q7: How many amino acid residues are there in this pdb object? 198
+
+> Q8: Name one of the two non-protein residues? hoh
+
+> Q9: How many protein chains are in this structure? 2
+
+```{r}
+# Perform flexiblity prediction
+m <- nma(adk)
+plot(m)
+```
+
+Write out a "movie" of the motion for viewing in Molstar
+
+```{r}
+mktrj(m, file="adk_m7.pdb")
+```
+
