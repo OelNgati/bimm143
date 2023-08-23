@@ -9,4 +9,8 @@ From class [BIMM143](https://youtu.be/o-YBDTqX_ZU)
 
 -[Class 12: **Transcriptomics**](https://github.com/OelNgati/bimm143/blob/5d995586247d4d840321152e71204b6db14f59b6/CopyOfClass%2012%20Transcriptomics%20and%20the%20analysis%20of%20RNA-Seq%20data/class12%20transcriptomics%20RNAseq.qmd)
 
--[**Find a Gene Product**](https://github.com/OelNgati/bimm143/tree/main/Find%20a%20Gene%20Project)
+-[**Find a Gene Product Data**](https://github.com/OelNgati/bimm143/tree/main/Find%20a%20Gene%20Project)
+
+-[**Find a Gene Product in context**] (https://docs.google.com/document/d/18I872WDOUFOit8nJ2r_5FGQMVw9vVcNa5jn4NmHLXGw/edit?usp=sharing)
+
+-[**
