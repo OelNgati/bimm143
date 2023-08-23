@@ -5,6 +5,8 @@ My Bioinformatics work from Spring 2023 at UC San Diego
 -[**Find a Gene Project Data**](https://github.com/OelNgati/bimm143/tree/main/Find%20a%20Gene%20Project)
 
 -[**Find a Gene Project in Context**](https://github.com/OelNgati/bimm143/blob/49103ef25a60ee41b877a34984019a9baf5f254c/Find_A_Gene_Project-3.pdf)
+
+
 -[Class06: **Intro to R**](https://github.com/OelNgati/bimm143/blob/784ef1302c6b22b01dcc68bac25d4b1c1d19db54/CopyOfClass6/class6.qmd)
 
 -[Class08: **Breast Cancer Mini Project**](https://github.com/OelNgati/bimm143/blob/5d995586247d4d840321152e71204b6db14f59b6/CopyOfClass6/CopyOfclass%208%20mini%20project/Class%208%20mini%20project.qmd)
