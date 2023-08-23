@@ -8,3 +8,5 @@ From class [BIMM143](https://youtu.be/o-YBDTqX_ZU)
 -[Class08: **Breast Cancer Mini Project**](https://github.com/OelNgati/bimm143/blob/5d995586247d4d840321152e71204b6db14f59b6/CopyOfClass6/CopyOfclass%208%20mini%20project/Class%208%20mini%20project.qmd)
 
 -[Class 12: **Transcriptomics**](https://github.com/OelNgati/bimm143/blob/5d995586247d4d840321152e71204b6db14f59b6/CopyOfClass%2012%20Transcriptomics%20and%20the%20analysis%20of%20RNA-Seq%20data/class12%20transcriptomics%20RNAseq.qmd)
+
+-[**Find a Gene Product**](https://github.com/OelNgati/bimm143/tree/main/Find%20a%20Gene%20Project)
