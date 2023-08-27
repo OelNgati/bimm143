@@ -1,7 +1,7 @@
 # BIMM143
 My Bioinformatics work from Spring 2023 at UC San Diego
 
--[**Find a Gene Project Data**]([https://github.com/OelNgati/bimm143/tree/main/Find%20a%20Gene%20Project])
+-[**Find a Gene Project Data**](https://github.com/OelNgati/bimm143/tree/main/Find%20a%20Gene%20Project)
 
 -[**Find a Gene Project in Context**](https://github.com/OelNgati/bimm143/blob/49103ef25a60ee41b877a34984019a9baf5f254c/Find_A_Gene_Project-3.pdf)
 
