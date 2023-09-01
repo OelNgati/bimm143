@@ -1,5 +1,5 @@
 # BIMM143
-My Bioinformatics work from Spring 2023 at UC San Diego
+Jonathan Cifuentes's Bioinformatics work from Spring 2023 at UC San Diego
 
 -[**Find a Gene Project Data**](https://github.com/OelNgati/bimm143/tree/main/Find%20a%20Gene%20Project)
 
